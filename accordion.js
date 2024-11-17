@@ -9,37 +9,67 @@
   6. If the accordion is closed we set the max-height of the currently hidden text inside the accordion from 0 to the scroll height of the content inside the accordion. The scroll height refers to the height of an html element in pixels. For this specific example, we are talking about the height of the div with the class accordion-content with all of its nested ptags
 */
 
-const accordionButtons = document.querySelectorAll(".accordion");
+const accordionBtns = document.querySelectorAll(".accordion");
 
-accordionButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    const isExpanded = button.getAttribute("aria-expanded") === "true";
-    const content = document.getElementById(button.getAttribute("aria-controls"));
+accordionBtns.forEach((accordion, index) => {
+  // On click, toggle the accordion state
+  accordion.onclick = function () {
+    toggleAccordion(this);
+  };
 
-    // Toggle current accordion
-    button.setAttribute("aria-expanded", !isExpanded);
-    content.style.maxHeight = isExpanded ? null : `${content.scrollHeight}px`;
+  // Keyboard interactions
+  accordion.addEventListener("keydown", function (e) {
+    switch (e.key) {
+      case "ArrowDown": // Move to the next accordion
+        e.preventDefault();
+        const next = accordionBtns[index + 1] || accordionBtns[0];
+        next.focus();
+        break;
 
-    // Close other accordions
-    accordionButtons.forEach((otherButton) => {
-      if (otherButton !== button) {
-        const otherContent = document.getElementById(otherButton.getAttribute("aria-controls"));
-        otherButton.setAttribute("aria-expanded", "false");
-        otherContent.style.maxHeight = null;
-      }
-    });
-  });
+      case "ArrowUp": // Move to the previous accordion
+        e.preventDefault();
+        const prev = accordionBtns[index - 1] || accordionBtns[accordionBtns.length - 1];
+        prev.focus();
+        break;
 
-  // Add keyboard interactions
-  button.addEventListener("keydown", function (e) {
-    const currentIndex = Array.from(accordionButtons).indexOf(button);
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      accordionButtons[(currentIndex + 1) % accordionButtons.length].focus();
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      accordionButtons[(currentIndex - 1 + accordionButtons.length) % accordionButtons.length].focus();
+      case "Home": // Move to the first accordion
+        e.preventDefault();
+        accordionBtns[0].focus();
+        break;
+
+      case "End": // Move to the last accordion
+        e.preventDefault();
+        accordionBtns[accordionBtns.length - 1].focus();
+        break;
+
+      case "Enter": // Toggle the accordion
+      case " ":
+        e.preventDefault();
+        toggleAccordion(this);
+        break;
+
+      default:
+        break;
     }
   });
 });
+
+// Function to toggle accordion
+function toggleAccordion(button) {
+  const isExpanded = button.getAttribute("aria-expanded") === "true";
+  const content = button.nextElementSibling;
+
+  // Update ARIA and visual states
+  button.setAttribute("aria-expanded", !isExpanded);
+  content.style.maxHeight = isExpanded ? null : content.scrollHeight + "px";
+
+  // Close other accordions
+  accordionBtns.forEach((otherAccordion) => {
+    if (otherAccordion !== button) {
+      otherAccordion.setAttribute("aria-expanded", "false");
+      otherAccordion.nextElementSibling.style.maxHeight = null;
+    }
+  });
+}
+
 
