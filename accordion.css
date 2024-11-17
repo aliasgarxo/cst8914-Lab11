@@ -32,7 +32,7 @@ button.accordion:after {
   float: right;
 }
 
-button.accordion.is-open:after {
+button.accordion[aria-expanded="true"]:after {
   content: "\f151";
 }
 
