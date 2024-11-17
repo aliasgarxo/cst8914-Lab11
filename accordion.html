@@ -35,6 +35,25 @@
           </div>
         </div>
       </div>
+	  <section>
+		<h2>Answer's to Questions</h2>
+	  
+		<h3>1. Missing Keyboard Interactions</h3>
+		<ul>
+		  <li>Arrow keys (Up and Down) don't let users move between sections.</li>
+		  <li>Home/End keys can't jump to the first or last section.</li>
+		  <li>Users can't use  Enter  or  Space  to open or close a section.</li>
+		</ul>
+	  
+		<h3>2. Missing ARIA Features</h3>
+		<ul>
+		  <li> aria-expanded : Needed to show if a section is open or closed.</li>
+		  <li> aria-controls : Needed to link buttons with their content sections.</li>
+		  <li> aria-labelledby : Helps screen readers match the content with the button text.</li>
+		</ul>
+	  </section>
+	  
+	  
       <script src="accordion.js"></script>
     </main>
   </body>
