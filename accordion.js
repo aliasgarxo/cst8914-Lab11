@@ -9,67 +9,37 @@
   6. If the accordion is closed we set the max-height of the currently hidden text inside the accordion from 0 to the scroll height of the content inside the accordion. The scroll height refers to the height of an html element in pixels. For this specific example, we are talking about the height of the div with the class accordion-content with all of its nested ptags
 */
 
+'use strict';
+
 const accordionBtns = document.querySelectorAll(".accordion");
 
-accordionBtns.forEach((accordion, index) => {
-  // On click, toggle the accordion state
-  accordion.onclick = function () {
-    toggleAccordion(this);
-  };
+accordionBtns.forEach((accordion) => {
+  // Click event to toggle accordion
+  accordion.addEventListener("click", function () {
+    // Toggle 'is-open' class
+    this.classList.toggle("is-open");
 
-  // Keyboard interactions
-  accordion.addEventListener("keydown", function (e) {
-    switch (e.key) {
-      case "ArrowDown": // Move to the next accordion
-        e.preventDefault();
-        const next = accordionBtns[index + 1] || accordionBtns[0];
-        next.focus();
-        break;
+    // Update aria-expanded attribute
+    const isExpanded = this.classList.contains("is-open");
+    this.setAttribute("aria-expanded", isExpanded);
 
-      case "ArrowUp": // Move to the previous accordion
-        e.preventDefault();
-        const prev = accordionBtns[index - 1] || accordionBtns[accordionBtns.length - 1];
-        prev.focus();
-        break;
+    // Toggle content visibility
+    let content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+      // Close the accordion
+      content.style.maxHeight = null;
+    } else {
+      // Open the accordion
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
 
-      case "Home": // Move to the first accordion
-        e.preventDefault();
-        accordionBtns[0].focus();
-        break;
-
-      case "End": // Move to the last accordion
-        e.preventDefault();
-        accordionBtns[accordionBtns.length - 1].focus();
-        break;
-
-      case "Enter": // Toggle the accordion
-      case " ":
-        e.preventDefault();
-        toggleAccordion(this);
-        break;
-
-      default:
-        break;
+  // Keydown event for keyboard interaction
+  accordion.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      this.click(); // Simulate click event
     }
   });
 });
-
-// Function to toggle accordion
-function toggleAccordion(button) {
-  const isExpanded = button.getAttribute("aria-expanded") === "true";
-  const content = button.nextElementSibling;
-
-  // Update ARIA and visual states
-  button.setAttribute("aria-expanded", !isExpanded);
-  content.style.maxHeight = isExpanded ? null : content.scrollHeight + "px";
-
-  // Close other accordions
-  accordionBtns.forEach((otherAccordion) => {
-    if (otherAccordion !== button) {
-      otherAccordion.setAttribute("aria-expanded", "false");
-      otherAccordion.nextElementSibling.style.maxHeight = null;
-    }
-  });
-}
-
 

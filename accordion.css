@@ -11,6 +11,12 @@
   margin: 50px auto;
 }
 
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+/* Accordion Button Styling */
 button.accordion {
   width: 100%;
   background-color: whitesmoke;
@@ -26,14 +32,13 @@ button.accordion {
 
 button.accordion:after {
   font-family: FontAwesome;
-  content: "\f150";
-  font-family: "fontawesome";
+  content: "\f150"; /* Plus icon */
   font-size: 18px;
   float: right;
 }
 
 button.accordion.is-open:after {
-  content: "\f151";
+  content: "\f151"; /* Minus icon */
 }
 
 button.accordion:hover,
@@ -41,6 +46,13 @@ button.accordion.is-open {
   background-color: #ddd;
 }
 
+/* Focus Style for Accessibility */
+button.accordion:focus {
+  outline: 2px solid #0078d7;
+  outline-offset: 2px;
+}
+
+/* Accordion Content Styling */
 .accordion-content {
   background-color: white;
   border-left: 1px solid whitesmoke;

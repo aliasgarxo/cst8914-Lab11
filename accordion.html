@@ -8,50 +8,31 @@
   </head>
   <body>
     <main>
-	  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      	<div class="container">
-        	<h1>Simple Accordions</h1>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="container">
+      <h1>Simple Accordion</h1>
 
-        <div id="accordion" class="accordion-container">
-          <button class="accordion" id="section1-button" aria-expanded="false" aria-controls="section1-content">Website Design and Development</button>
-          <div id="section1-content" class="accordion-content" role="region" aria-labelledby="section1-button">
-            <p>
-				Whether you need a wordpress website, a shopify site, or a custom fullstack application, we got you! No matter what kind of website or application you need, it will be made with clean and maintable code that follows modern development standards. We also have top notch designers that can make unique designs that will make your website look different and unique. Not to mention that we also provide 24/7 website maintenance so that you get all the support you need.
-            </p>
-          </div>
-
-          <button class="accordion" id="section2-button" aria-expanded="false" aria-controls="section2-content">Website Analytics and Performance</button>
-          <div id="section2-content" class="accordion-content" role="region" aria-labelledby="section2-button">
-            <p>
-				We believe that in order to have a successful website, you need to constantly adjust and adapt to the data provided by your website visitors. Here at Pierre Web Development, we have narrowed down the specific key performance indicators that will dramatically boost your success with connecting to target markets. We will provide a basic metric dashboard based on how much traffic your site gets, detailed analytical reports that show which parts of your website is the most popular among visitors as well as access to tools you can use to make meaningful decisions based on this data.
-            </p>
-          </div>
-
-          <button class="accordion" id="section3-button" aria-expanded="false" aria-controls="section3-content">Digital Marketing</button>
-          <div id="section3-content" class="accordion-content" role="region" aria-labelledby="section3-button">
-            <p>
-				We know that every great website focuses on helping you get more business and building a brand that your ideal customers will love and support. We can help you set up a great, SEO-focused content strategy, a paid ads campaign, email marketing integration with Mailchimp as well as a social media marketing campaign. We also use popular website analytic tools to track your site's performance and provide you with weekly analytic reports to help bolster your growth.
-            </p>
-          </div>
-        </div>
+      <button class="accordion" aria-expanded="false" aria-controls="section1">Website Design and Development</button>
+      <div id="section1" class="accordion-content" role="region">
+        <p>
+			Whether you need a wordpress website, a shopify site, or a custom fullstack application, we got you! No matter what kind of website or application you need, it will be made with clean and maintable code that follows modern development standards. We also have top notch designers that can make unique designs that will make your website look different and unique. Not to mention that we also provide 24/7 website maintenance so that you get all the support you need.
+        </p>
       </div>
-	  <section>
-		<h2>Answer's to Questions</h2>
-	  
-		<h3>1. Missing Keyboard Interactions</h3>
-		<ul>
-		  <li>Arrow keys (Up and Down) don't let users move between sections.</li>
-		  <li>Home/End keys can't jump to the first or last section.</li>
-		  <li>Users can't use  Enter  or  Space  to open or close a section.</li>
-		</ul>
-	  
-		<h3>2. Missing ARIA Features</h3>
-		<ul>
-		  <li> aria-expanded : Needed to show if a section is open or closed.</li>
-		  <li> aria-controls : Needed to link buttons with their content sections.</li>
-		  <li> aria-labelledby : Helps screen readers match the content with the button text.</li>
-		</ul>
-	  </section>
+
+      <button class="accordion" aria-expanded="false" aria-controls="section2">Website Analytics and Performance</button>
+      <div id="section2" class="accordion-content" role="region">
+        <p>
+			We believe that in order to have a successful website, you need to constantly adjust and adapt to the data provided by your website visitors. Here at Pierre Web Development, we have narrowed down the specific key performance indicators that will dramatically boost your success with connecting to target markets. We will provide a basic metric dashboard based on how much traffic your site gets, detailed analytical reports that show which parts of your website is the most popular among visitors as well as access to tools you can use to make meaningful decisions based on this data.
+        </p>
+      </div>
+
+      <button class="accordion" aria-expanded="false" aria-controls="section3">Digital Marketing</button>
+      <div id="section3" class="accordion-content" role="region">
+        <p>
+			We know that every great website focuses on helping you get more business and building a brand that your ideal customers will love and support. We can help you set up a great, SEO-focused content strategy, a paid ads campaign, email marketing integration with Mailchimp as well as a social media marketing campaign. We also use popular website analytic tools to track your site's performance and provide you with weekly analytic reports to help bolster your growth.
+        </p>
+      </div>
+    </div>
 	  
 	  
       <script src="accordion.js"></script>
