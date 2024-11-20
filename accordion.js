@@ -9,37 +9,31 @@
   6. If the accordion is closed we set the max-height of the currently hidden text inside the accordion from 0 to the scroll height of the content inside the accordion. The scroll height refers to the height of an html element in pixels. For this specific example, we are talking about the height of the div with the class accordion-content with all of its nested ptags
 */
 
-'use strict';
-
 const accordionBtns = document.querySelectorAll(".accordion");
 
 accordionBtns.forEach((accordion) => {
-  // Click event to toggle accordion
-  accordion.addEventListener("click", function () {
-    // Toggle 'is-open' class
+  accordion.onclick = function () {
     this.classList.toggle("is-open");
 
-    // Update aria-expanded attribute
-    const isExpanded = this.classList.contains("is-open");
-    this.setAttribute("aria-expanded", isExpanded);
-
-    // Toggle content visibility
     let content = this.nextElementSibling;
+    console.log(content);
+
     if (content.style.maxHeight) {
-      // Close the accordion
+      //this is if the accordion is open
       content.style.maxHeight = null;
+      // Fix: Set aria-hidden to true
+      content.setAttribute("aria-hidden", "true");
+
     } else {
-      // Open the accordion
+      //if the accordion is currently closed
       content.style.maxHeight = content.scrollHeight + "px";
+      // Fix: Set aria-hidden to false
+      content.setAttribute("aria-hidden", "false");
+      console.log(content.style.maxHeight);
     }
-  });
-
-  // Keydown event for keyboard interaction
-  accordion.addEventListener("keydown", function (event) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      this.click(); // Simulate click event
-    }
-  });
+    
+    // Fix: Update aria-expanded attribute on the accordion button
+    const isExpanded = this.getAttribute("aria-expanded") === "true";
+    this.setAttribute("aria-expanded", !isExpanded);
+  };
 });
-
