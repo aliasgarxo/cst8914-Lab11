@@ -15,7 +15,7 @@ accordionBtns.forEach((accordion) => {
   accordion.onclick = function () {
     this.classList.toggle("is-open");
 
-    let content = this.nextElementSibling;
+    let content = this.parentElement.nextElementSibling;
     console.log(content);
 
     if (content.style.maxHeight) {
